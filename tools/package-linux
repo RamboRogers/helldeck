@@ -1,0 +1,25 @@
+#!/bin/sh
+# Build a transferable, offline x86-64 GNU/Linux bundle from this folder.
+set -eu
+cd "$(dirname "$(dirname "$(realpath "$0")")")"
+[ "$(uname -sm)" = 'Linux x86_64' ] || { printf >&2 'Build on x86-64 GNU/Linux.\n'; exit 1; }
+# Rust panic locations in dependency code otherwise embed the builder's home path.
+sep=$(printf '\037')
+export CARGO_ENCODED_RUSTFLAGS="--remap-path-prefix=$(pwd)=helldeck${sep}--remap-path-prefix=${CARGO_HOME:-$HOME/.cargo}=cargo-home"
+cargo build --release --frozen --target x86_64-unknown-linux-gnu --target-dir target
+binary=target/x86_64-unknown-linux-gnu/release/helldeck
+version=$("$binary" --version | cut -d' ' -f2 | sed -n '1p')
+name=helldeck-$version-x86_64-linux
+mkdir -p dist
+tmp=$(mktemp "dist/.$name.XXXXXX")
+trap 'rm -f "$tmp"' EXIT
+# Keep the installer's expected layout, not the rest of target/ or local planning notes.
+set -- README.md Cargo.toml Cargo.lock .cargo/config.toml assets desktop docs examples src tests tools vendor/registry
+if [ -f LICENSE ]; then set -- "$@" LICENSE; fi
+tar --sort=name --owner=0 --group=0 --numeric-owner --exclude='__pycache__' \
+    --transform="s,^$binary\$,target/release/helldeck," --transform="s,^,$name/," \
+    -czf "$tmp" "$@" "$binary"
+chmod 644 "$tmp"
+mv "$tmp" "dist/$name.tar.gz"
+(cd dist && sha256sum "$name.tar.gz" > "$name.tar.gz.sha256")
+printf '%s\n' "dist/$name.tar.gz"

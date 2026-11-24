@@ -1,0 +1,18 @@
+#!/bin/sh
+# Launch the existing service model; never start a second device controller.
+set -eu
+app_dir=$(dirname "$(dirname "$(realpath "$0")")")
+bin="$app_dir/target/release/helldeck"
+note() { notify-send --app-name=HellDeck --icon=helldeck 'HellDeck' "$1" || :; }
+if systemctl --user is-active --quiet helldeck.service; then
+    note 'Already running in the system tray.\nMatthew Rogers · @matthewrogers'
+    exit 0
+fi
+if [ ! -x "$bin" ]; then note 'Release binary missing. Build HellDeck with cargo build --release --locked.'; exit 1; fi
+if ! systemd-run --user --unit=helldeck --collect --property=Type=exec --property="RestrictAddressFamilies=AF_UNIX AF_NETLINK" --property="WorkingDirectory=$app_dir" --description='HellDeck — Matthew Rogers · @matthewrogers' "$bin" run; then
+    systemctl --user is-active --quiet helldeck.service && exit 0
+    note 'Could not start HellDeck. See journalctl --user -u helldeck.'; exit 1
+fi
+# Type=exec confirms exec(), not that HID initialization succeeded.
+sleep 1
+if ! systemctl --user is-active --quiet helldeck.service; then note 'HellDeck stopped during startup. Check the Stream Deck and journalctl --user -u helldeck.'; exit 1; fi

@@ -1,0 +1,9 @@
+# Build the supported Linux target without consulting the internet or a warm Cargo cache.
+[net]
+offline = true
+
+[source.crates-io]
+replace-with = "helldeck-local"
+
+[source.helldeck-local]
+local-registry = "vendor/registry"

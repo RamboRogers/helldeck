@@ -1,0 +1,41 @@
+# Local builds, previews, and working notes (not release inputs).
+/target/
+/dist/
+/IDEA.md
+/PLAN.md
+/preview.png
+/missions.png
+**/__pycache__/
+*.py[cod]
+
+# Machine-specific config, profiles, credentials, and diagnostics.
+/.cargo/*
+!/.cargo/config.toml
+.env
+.env.*
+.envrc
+.ssh/
+.gnupg/
+.config/
+.local/
+.cache/
+.hermes/
+.git-credentials
+.netrc
+credentials.json
+credentials.toml
+*.pem
+*.key
+*.p12
+*.pfx
+*.log
+*.core
+/core
+/config.json
+
+# Editor and OS state.
+.idea/
+.vscode/
+.DS_Store
+*.swp
+*~

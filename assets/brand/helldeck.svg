@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">HellDeck</title>
+  <desc id="desc">A descending gold command pod between two signal wings. HellDeck by Matthew Rogers, @matthewrogers.</desc>
+  <defs>
+    <linearGradient id="enamel" x2="0.3" y2="1"><stop stop-color="#27333d"/><stop offset="1" stop-color="#0e1319"/></linearGradient>
+    <linearGradient id="metal" x2="0.35" y2="1"><stop stop-color="#ffe889"/><stop offset="0.65" stop-color="#ffcd38"/><stop offset="1" stop-color="#ffad24"/></linearGradient>
+  </defs>
+  <path d="M21 4h86l17 17v86l-17 17H21L4 107V21Z" fill="#080d12"/>
+  <path d="M23 8h82l15 15v82l-15 15H23L8 105V23Z" fill="url(#enamel)" stroke="#4d5960" stroke-width="2"/>
+  <!-- A capsule with four negative-space deck keys; readable without lettering at tray size. -->
+  <g fill="url(#metal)">
+    <path d="M16 31l24 12 5 13-25-13zm7 24 23 12 4 11-22-12zm8 22 21 11 3 9-19-10z"/>
+    <path d="M112 31L88 43l-5 13 25-13zm-7 24L82 67l-4 11 22-12zm-8 22L76 88l-3 9 19-10z"/>
+    <path fill-rule="evenodd" d="M47 25h34v34l-7 25-10 21-10-21-7-25zm7 10v9h7v-9zm13 0v9h7v-9zM54 49v9h7v-9zm13 0v9h7v-9z"/>
+  </g>
+  <path d="M61 69h6l-3 18z" fill="#78410c"/>
+  <path d="M42 114h44" stroke="#50606a" stroke-width="2"/>
+</svg>

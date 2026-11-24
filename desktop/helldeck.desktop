@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=HellDeck
+GenericName=Stream Deck Stratagem Panel
+Comment=Helldivers 2 stratagems by Matthew Rogers (@matthewrogers)
+Exec=helldeck-launch
+Icon=helldeck
+Terminal=false
+StartupNotify=false
+Categories=Game;
+Keywords=Helldivers;Stream Deck;Stratagems;Matthew Rogers;matthewrogers;

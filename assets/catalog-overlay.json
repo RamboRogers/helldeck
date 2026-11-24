@@ -1,0 +1,12 @@
+{
+  "AMW-20 Apex": {"icon":"AMW-20 Apex", "code":"DLLUDL", "source":"Scope of Authority"},
+  "LAS-44 Nova": {"icon":"LAS-44 Nova", "code":"DLRDD", "source":"Scope of Authority"},
+  "Breaching Hammer": {"icon":"CQC-20", "code":"DLRLU", "source":"Siege Breakers"},
+  "Leveller": {"icon":"EAT-411", "code":"DDLUD", "source":"Siege Breakers"},
+  "Belt-Fed Grenade Launcher": {"icon":"GL-28", "code":"DLULUU", "source":"Siege Breakers"},
+  "Gas Mortar Sentry": {"icon":"Gas Mortar Sentry", "code":"DURDL", "source":"Entrenched Division"},
+  "Flame Sentry": {"icon":"Flame Sentry", "code":"DURDUU", "source":"Urban Legends"},
+  "Gunner FRV": {"icon":"Fast Recon Vehicle", "code":"LDRDRDU", "source":"non-warbond"},
+  "Incinerator FRV": {"icon":"Incinerator FRV", "code":"LDRLDUU", "source":"non-warbond"},
+  "TD-110 Maelstrom": {"icon":"TD-110 Maelstrom", "code":"LDRDLDULR", "source":"non-warbond"}
+}

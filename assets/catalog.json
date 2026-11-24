@@ -1,0 +1,656 @@
+[
+  {
+    "id": "resupply",
+    "name": "Resupply",
+    "group": "utility",
+    "code": "DDUR"
+  },
+  {
+    "id": "reinforce",
+    "name": "Reinforce",
+    "group": "utility",
+    "code": "UDRLU"
+  },
+  {
+    "id": "eagle-rearm",
+    "name": "Eagle Rearm",
+    "group": "mission",
+    "code": "UULUR"
+  },
+  {
+    "id": "sos-beacon",
+    "name": "SOS Beacon",
+    "group": "mission",
+    "code": "UDRU"
+  },
+  {
+    "id": "hellbomb",
+    "name": "Hellbomb",
+    "group": "mission",
+    "code": "DULDURDU"
+  },
+  {
+    "id": "seismic-probe",
+    "name": "Seismic Probe",
+    "group": "mission",
+    "code": "UULRDD"
+  },
+  {
+    "id": "upload-data",
+    "name": "Upload Data",
+    "group": "mission",
+    "code": "LRUUU"
+  },
+  {
+    "id": "seaf-artillery",
+    "name": "SEAF Artillery",
+    "group": "mission",
+    "code": "RUUD"
+  },
+  {
+    "id": "super-earth-flag",
+    "name": "Super Earth Flag",
+    "group": "mission",
+    "code": "DUDU"
+  },
+  {
+    "id": "orbital-illumination-flare",
+    "name": "Orbital Illumination Flare",
+    "group": "mission",
+    "code": "RRLL"
+  },
+  {
+    "id": "call-in-super-destroyer",
+    "name": "Call In Super Destroyer",
+    "group": "mission",
+    "code": "UUDDLRLR"
+  },
+  {
+    "id": "cargo-container",
+    "name": "Cargo Container",
+    "group": "mission",
+    "code": "UUDDRD"
+  },
+  {
+    "id": "prospecting-drill",
+    "name": "Prospecting Drill",
+    "group": "mission",
+    "code": "DDLRDD"
+  },
+  {
+    "id": "hive-breaker-drill",
+    "name": "Hive Breaker Drill",
+    "group": "mission",
+    "code": "LUDRDD"
+  },
+  {
+    "id": "orbital-gatling-barrage",
+    "name": "Orbital Gatling Barrage",
+    "group": "loadout",
+    "code": "RDLUU"
+  },
+  {
+    "id": "orbital-airburst-strike",
+    "name": "Orbital Airburst Strike",
+    "group": "loadout",
+    "code": "RRR"
+  },
+  {
+    "id": "orbital-120mm-he-barrage",
+    "name": "Orbital 120MM HE Barrage",
+    "group": "loadout",
+    "code": "RRDLRD"
+  },
+  {
+    "id": "orbital-380mm-he-barrage",
+    "name": "Orbital 380MM HE Barrage",
+    "group": "loadout",
+    "code": "RDUULDD"
+  },
+  {
+    "id": "orbital-walking-barrage",
+    "name": "Orbital Walking Barrage",
+    "group": "loadout",
+    "code": "RDRDRD"
+  },
+  {
+    "id": "orbital-laser",
+    "name": "Orbital Laser",
+    "group": "loadout",
+    "code": "RDURD"
+  },
+  {
+    "id": "orbital-railcannon-strike",
+    "name": "Orbital Railcannon Strike",
+    "group": "loadout",
+    "code": "RUDDR"
+  },
+  {
+    "id": "orbital-precision-strike",
+    "name": "Orbital Precision Strike",
+    "group": "loadout",
+    "code": "RRU"
+  },
+  {
+    "id": "orbital-gas-strike",
+    "name": "Orbital Gas Strike",
+    "group": "loadout",
+    "code": "RRDR"
+  },
+  {
+    "id": "orbital-ems-strike",
+    "name": "Orbital EMS Strike",
+    "group": "loadout",
+    "code": "RRLD"
+  },
+  {
+    "id": "orbital-smoke-strike",
+    "name": "Orbital Smoke Strike",
+    "group": "loadout",
+    "code": "RRDU"
+  },
+  {
+    "id": "orbital-napalm-barrage",
+    "name": "Orbital Napalm Barrage",
+    "group": "loadout",
+    "code": "RRDLRU"
+  },
+  {
+    "id": "eagle-strafing-run",
+    "name": "Eagle Strafing Run",
+    "group": "loadout",
+    "code": "URR"
+  },
+  {
+    "id": "eagle-airstrike",
+    "name": "Eagle Airstrike",
+    "group": "loadout",
+    "code": "URDR"
+  },
+  {
+    "id": "eagle-cluster-bomb",
+    "name": "Eagle Cluster Bomb",
+    "group": "loadout",
+    "code": "URDDR"
+  },
+  {
+    "id": "eagle-napalm-airstrike",
+    "name": "Eagle Napalm Airstrike",
+    "group": "loadout",
+    "code": "URDU"
+  },
+  {
+    "id": "eagle-smoke-strike",
+    "name": "Eagle Smoke Strike",
+    "group": "loadout",
+    "code": "URUD"
+  },
+  {
+    "id": "eagle-110mm-rocket-pods",
+    "name": "Eagle 110MM Rocket Pods",
+    "group": "loadout",
+    "code": "URUL"
+  },
+  {
+    "id": "eagle-500kg-bomb",
+    "name": "Eagle 500kg Bomb",
+    "group": "loadout",
+    "code": "URDDD"
+  },
+  {
+    "id": "eagle-gas-airstrike",
+    "name": "Eagle Gas Airstrike",
+    "group": "loadout",
+    "code": "URLR"
+  },
+  {
+    "id": "machine-gun",
+    "name": "Machine Gun",
+    "group": "loadout",
+    "code": "DLDUR"
+  },
+  {
+    "id": "heavy-machine-gun",
+    "name": "Heavy Machine Gun",
+    "group": "loadout",
+    "code": "DLUDD"
+  },
+  {
+    "id": "anti-materiel-rifle",
+    "name": "Anti-Materiel Rifle",
+    "group": "loadout",
+    "code": "DLRUD"
+  },
+  {
+    "id": "stalwart",
+    "name": "Stalwart",
+    "group": "loadout",
+    "code": "DLDUUL"
+  },
+  {
+    "id": "expendable-anti-tank",
+    "name": "Expendable Anti-tank",
+    "group": "loadout",
+    "code": "DDLUR"
+  },
+  {
+    "id": "recoilless-rifle",
+    "name": "Recoilless Rifle",
+    "group": "loadout",
+    "code": "DLRRL"
+  },
+  {
+    "id": "flamethrower",
+    "name": "Flamethrower",
+    "group": "loadout",
+    "code": "DLUDU"
+  },
+  {
+    "id": "autocannon",
+    "name": "Autocannon",
+    "group": "loadout",
+    "code": "DLDUUR"
+  },
+  {
+    "id": "railgun",
+    "name": "Railgun",
+    "group": "loadout",
+    "code": "DRDULR"
+  },
+  {
+    "id": "spear-launcher",
+    "name": "SPEAR Launcher",
+    "group": "loadout",
+    "code": "DDUDD"
+  },
+  {
+    "id": "grenade-launcher",
+    "name": "Grenade Launcher",
+    "group": "loadout",
+    "code": "DLULD"
+  },
+  {
+    "id": "laser-cannon",
+    "name": "Laser Cannon",
+    "group": "loadout",
+    "code": "DLDUL"
+  },
+  {
+    "id": "quasar-cannon",
+    "name": "Quasar Cannon",
+    "group": "loadout",
+    "code": "DDULR"
+  },
+  {
+    "id": "arc-thrower",
+    "name": "Arc Thrower",
+    "group": "loadout",
+    "code": "DRDULL"
+  },
+  {
+    "id": "jump-pack",
+    "name": "Jump Pack",
+    "group": "loadout",
+    "code": "DUUDU"
+  },
+  {
+    "id": "supply-pack",
+    "name": "Supply Pack",
+    "group": "loadout",
+    "code": "DLDUUD"
+  },
+  {
+    "id": "guard-dog-rover",
+    "name": "Guard Dog Rover",
+    "group": "loadout",
+    "code": "DULURR"
+  },
+  {
+    "id": "ballistic-shield-backpack",
+    "name": "Ballistic Shield Backpack",
+    "group": "loadout",
+    "code": "DLDDUL"
+  },
+  {
+    "id": "shield-generator-pack",
+    "name": "Shield Generator Pack",
+    "group": "loadout",
+    "code": "DULRLR"
+  },
+  {
+    "id": "guard-dog",
+    "name": "Guard Dog",
+    "group": "loadout",
+    "code": "DULURD"
+  },
+  {
+    "id": "patriot-exosuit",
+    "name": "Patriot Exosuit",
+    "group": "loadout",
+    "code": "LDRULDD"
+  },
+  {
+    "id": "emancipator-exosuit",
+    "name": "Emancipator Exosuit",
+    "group": "loadout",
+    "code": "LDRULDU"
+  },
+  {
+    "id": "airburst-rocket-launcher",
+    "name": "Airburst Rocket Launcher",
+    "group": "loadout",
+    "code": "DUULR"
+  },
+  {
+    "id": "commando",
+    "name": "Commando",
+    "group": "loadout",
+    "code": "DLUDR"
+  },
+  {
+    "id": "sta-x3-w-a-s-p-launcher",
+    "name": "StA-X3 W.A.S.P. Launcher",
+    "group": "loadout",
+    "code": "DDUDR"
+  },
+  {
+    "id": "breaching-hammer",
+    "name": "Breaching Hammer",
+    "group": "loadout",
+    "code": "DLRLU"
+  },
+  {
+    "id": "epoch",
+    "name": "Epoch",
+    "group": "loadout",
+    "code": "DLULR"
+  },
+  {
+    "id": "bullet-storm",
+    "name": "Bullet Storm",
+    "group": "loadout",
+    "code": "DLDRUL"
+  },
+  {
+    "id": "speargun",
+    "name": "Speargun",
+    "group": "loadout",
+    "code": "DRDLUR"
+  },
+  {
+    "id": "defoliation-tool",
+    "name": "Defoliation Tool",
+    "group": "loadout",
+    "code": "DLRRD"
+  },
+  {
+    "id": "sterilizer",
+    "name": "Sterilizer",
+    "group": "loadout",
+    "code": "DLUDL"
+  },
+  {
+    "id": "expendable-napalm",
+    "name": "Expendable Napalm",
+    "group": "loadout",
+    "code": "DDLUL"
+  },
+  {
+    "id": "leveller",
+    "name": "Leveller",
+    "group": "loadout",
+    "code": "DDLUD"
+  },
+  {
+    "id": "de-escalator",
+    "name": "De-Escalator",
+    "group": "loadout",
+    "code": "DRULR"
+  },
+  {
+    "id": "belt-fed-grenade-launcher",
+    "name": "Belt-Fed Grenade Launcher",
+    "group": "loadout",
+    "code": "DLULUU"
+  },
+  {
+    "id": "c4-pack",
+    "name": "C4 Pack",
+    "group": "loadout",
+    "code": "DRUURU"
+  },
+  {
+    "id": "solo-silo",
+    "name": "Solo Silo",
+    "group": "loadout",
+    "code": "DURDD"
+  },
+  {
+    "id": "cremator",
+    "name": "Cremator",
+    "group": "loadout",
+    "code": "DDRDUU"
+  },
+  {
+    "id": "maxigun",
+    "name": "Maxigun",
+    "group": "loadout",
+    "code": "DLRDUU"
+  },
+  {
+    "id": "one-true-flag",
+    "name": "One True Flag",
+    "group": "loadout",
+    "code": "DLRRU"
+  },
+  {
+    "id": "directional-shield",
+    "name": "Directional Shield",
+    "group": "loadout",
+    "code": "DULRUU"
+  },
+  {
+    "id": "guard-dog-hot-dog",
+    "name": "Guard Dog Hot Dog",
+    "group": "loadout",
+    "code": "DULULL"
+  },
+  {
+    "id": "portable-hellbomb",
+    "name": "Portable Hellbomb",
+    "group": "loadout",
+    "code": "DRUUU"
+  },
+  {
+    "id": "guard-dog-k-9",
+    "name": "Guard Dog K-9",
+    "group": "loadout",
+    "code": "DULURL"
+  },
+  {
+    "id": "hover-pack",
+    "name": "Hover Pack",
+    "group": "loadout",
+    "code": "DUUDLR"
+  },
+  {
+    "id": "guard-dog-dog-breath",
+    "name": "Guard Dog Dog Breath",
+    "group": "loadout",
+    "code": "DULURU"
+  },
+  {
+    "id": "warp-pack",
+    "name": "Warp Pack",
+    "group": "loadout",
+    "code": "DLRDLR"
+  },
+  {
+    "id": "gunner-frv",
+    "name": "Gunner FRV",
+    "group": "loadout",
+    "code": "LDRDRDU"
+  },
+  {
+    "id": "bastion-mk-xvi",
+    "name": "Bastion MK XVI",
+    "group": "loadout",
+    "code": "LDRDLDUDU"
+  },
+  {
+    "id": "breakthrough-exosuit",
+    "name": "Breakthrough Exosuit",
+    "group": "loadout",
+    "code": "LDRLRDU"
+  },
+  {
+    "id": "lumberer-exosuit",
+    "name": "Lumberer Exosuit",
+    "group": "loadout",
+    "code": "LDRURLU"
+  },
+  {
+    "id": "supply-frv",
+    "name": "Supply FRV",
+    "group": "loadout",
+    "code": "LDLLDUR"
+  },
+  {
+    "id": "40-k-meltagun",
+    "name": "40-K Meltagun",
+    "group": "loadout",
+    "code": "DLULLD"
+  },
+  {
+    "id": "hmg-emplacement",
+    "name": "HMG Emplacement",
+    "group": "loadout",
+    "code": "DULRRL"
+  },
+  {
+    "id": "shield-generator-relay",
+    "name": "Shield Generator Relay",
+    "group": "loadout",
+    "code": "DDLRLR"
+  },
+  {
+    "id": "tesla-tower",
+    "name": "Tesla Tower",
+    "group": "loadout",
+    "code": "DURULR"
+  },
+  {
+    "id": "anti-personnel-minefield",
+    "name": "Anti-Personnel Minefield",
+    "group": "loadout",
+    "code": "DLUR"
+  },
+  {
+    "id": "incendiary-mines",
+    "name": "Incendiary Mines",
+    "group": "loadout",
+    "code": "DLLD"
+  },
+  {
+    "id": "machine-gun-sentry",
+    "name": "Machine Gun Sentry",
+    "group": "loadout",
+    "code": "DURRU"
+  },
+  {
+    "id": "gatling-sentry",
+    "name": "Gatling Sentry",
+    "group": "loadout",
+    "code": "DURL"
+  },
+  {
+    "id": "mortar-sentry",
+    "name": "Mortar Sentry",
+    "group": "loadout",
+    "code": "DURRD"
+  },
+  {
+    "id": "autocannon-sentry",
+    "name": "Autocannon Sentry",
+    "group": "loadout",
+    "code": "DURULU"
+  },
+  {
+    "id": "rocket-sentry",
+    "name": "Rocket Sentry",
+    "group": "loadout",
+    "code": "DURRL"
+  },
+  {
+    "id": "ems-mortar-sentry",
+    "name": "EMS Mortar Sentry",
+    "group": "loadout",
+    "code": "DURDR"
+  },
+  {
+    "id": "anti-tank-mines",
+    "name": "Anti-Tank Mines",
+    "group": "loadout",
+    "code": "DLUU"
+  },
+  {
+    "id": "grenadier-battlement",
+    "name": "Grenadier Battlement",
+    "group": "loadout",
+    "code": "DRDLR"
+  },
+  {
+    "id": "gas-mines",
+    "name": "Gas Mines",
+    "group": "loadout",
+    "code": "DLLR"
+  },
+  {
+    "id": "anti-tank-emplacement",
+    "name": "Anti-Tank Emplacement",
+    "group": "loadout",
+    "code": "DULRRR"
+  },
+  {
+    "id": "laser-sentry",
+    "name": "Laser Sentry",
+    "group": "loadout",
+    "code": "DURDUR"
+  },
+  {
+    "id": "amw-20-apex",
+    "name": "AMW-20 Apex",
+    "group": "loadout",
+    "code": "DLLUDL"
+  },
+  {
+    "id": "las-44-nova",
+    "name": "LAS-44 Nova",
+    "group": "loadout",
+    "code": "DLRDD"
+  },
+  {
+    "id": "gas-mortar-sentry",
+    "name": "Gas Mortar Sentry",
+    "group": "loadout",
+    "code": "DURDL"
+  },
+  {
+    "id": "flame-sentry",
+    "name": "Flame Sentry",
+    "group": "loadout",
+    "code": "DURDUU"
+  },
+  {
+    "id": "incinerator-frv",
+    "name": "Incinerator FRV",
+    "group": "loadout",
+    "code": "LDRLDUU"
+  },
+  {
+    "id": "td-110-maelstrom",
+    "name": "TD-110 Maelstrom",
+    "group": "loadout",
+    "code": "LDRDLDULR"
+  }
+]

@@ -1,0 +1,19 @@
+#!/bin/sh
+# User-scoped launcher + themed icons. Do not replace other apps' files.
+set -eu
+root=$(dirname "$(dirname "$(realpath "$0")")")
+data=${XDG_DATA_HOME:-"$HOME/.local/share"}
+bin="$HOME/.local/bin"
+link() {
+    if [ -L "$2" ] && [ "$(readlink "$2")" = "$1" ]; then return; fi
+    if [ -L "$2" ] || [ -e "$2" ]; then printf 'Refusing to overwrite %s\n' "$2" >&2; exit 1; fi
+    mkdir -p "$(dirname "$2")"; ln -s "$1" "$2"
+}
+test -x "$root/target/release/helldeck" || { printf 'Build with cargo build --release --locked first.\n' >&2; exit 1; }
+desktop-file-validate "$root/desktop/helldeck.desktop"
+link "$root/desktop/helldeck-launch" "$bin/helldeck-launch"
+link "$root/assets/brand/helldeck.svg" "$data/icons/hicolor/scalable/apps/helldeck.svg"
+link "$root/assets/brand/helldeck-64.png" "$data/icons/hicolor/64x64/apps/helldeck.png"
+link "$root/desktop/helldeck.desktop" "$data/applications/helldeck.desktop"
+update-desktop-database "$data/applications"
+if command -v gtk-update-icon-cache >/dev/null; then gtk-update-icon-cache -qt -f "$data/icons/hicolor"; fi

@@ -1,0 +1,4 @@
+# Grant the active local seat access to this Stream Deck model only.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0080", TAG+="uaccess"
+# uinput can synthesize seat-wide input. Install only on a trusted desktop.
+SUBSYSTEM=="misc", KERNEL=="uinput", TAG+="uaccess", OPTIONS+="static_node=uinput"
