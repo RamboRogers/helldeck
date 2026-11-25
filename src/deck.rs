@@ -193,7 +193,7 @@ pub fn run(c: &Catalog, preset: Option<&str>) -> Result<()> {
     let flag = stop.clone();
     ctrlc::set_handler(move || flag.store(true, Ordering::SeqCst))?;
     let mut tray = crate::tray::TrayState::start(stop.clone());
-    let matcher = Arc::new(Matcher::new(c));
+    let mut matcher = Arc::new(Matcher::local(c));
     while !stop.load(Ordering::SeqCst) {
         let (h, serial) = devices()?;
         idle_node()?;
@@ -379,6 +379,29 @@ pub fn run(c: &Catalog, preset: Option<&str>) -> Result<()> {
                         }));
                     }
                     Action::Save(ids) => save_slots(c, &mut cfg, &mut p, ids)?,
+                    Action::Teach(ids) => {
+                        let result = (|| -> Result<_> {
+                            let path = helldeck::hud::HudBook::path()?;
+                            let mut book = helldeck::hud::HudBook::load(&path)?;
+                            let mut names = vec![];
+                            for (id, print) in p.confirmed_samples() {
+                                let name = c.entries[id].id.as_str();
+                                book.remember(name, print.clone());
+                                names.push(name);
+                            }
+                            book.save(&path)?;
+                            eprintln!("Learned confirmed HUD references: {}", names.join(", "));
+                            Ok(())
+                        })();
+                        save_slots(c, &mut cfg, &mut p, ids)?;
+                        match result {
+                            Ok(()) => matcher = Arc::new(Matcher::local(c)),
+                            Err(e) => {
+                                p.notice = "TEACH ERR".into();
+                                eprintln!("Loadout saved, HUD references not saved: {e:#}");
+                            }
+                        }
+                    }
                 }
             }
         }

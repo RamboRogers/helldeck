@@ -1,3 +1,4 @@
+pub mod hud;
 pub mod platform;
 pub mod sync;
 pub mod ui;

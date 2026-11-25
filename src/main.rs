@@ -23,7 +23,7 @@ fn main() -> Result<()> {
         Some("recognize") => {
             let path = a.get(1).context("expected cropped row PNG")?;
             let row = image::open(path)?.to_rgb8();
-            let report = helldeck::sync::Matcher::new(&cat).scan(&row)?;
+            let report = helldeck::sync::Matcher::local(&cat).scan(&row)?;
             for (slot, decision) in report.iter().enumerate() {
                 decision.log(slot, &cat);
             }

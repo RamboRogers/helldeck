@@ -19,11 +19,14 @@ pub enum Action {
     Cast(usize),
     Sync(bool),
     Save([usize; 4]),
+    Teach([usize; 4]),
 }
 pub struct Panel {
     pub slots: [Option<usize>; 4],
     pub draft: [Option<usize>; 4],
     suggestions: [Vec<usize>; 4],
+    samples: [Option<crate::hud::Print>; 4],
+    picked: [bool; 4],
     pub page: Page,
     pub armed: bool,
     pub waiting_focus: bool,
@@ -35,6 +38,8 @@ impl Panel {
             slots,
             draft: [None; 4],
             suggestions: Default::default(),
+            samples: Default::default(),
+            picked: [false; 4],
             page: Page::Home,
             armed: false,
             waiting_focus: false,
@@ -60,12 +65,15 @@ impl Panel {
     }
     pub fn review(&mut self, slots: [Option<usize>; 4]) {
         self.suggestions = Default::default();
+        self.samples = Default::default();
+        self.picked = [false; 4];
         self.draft = slots;
         self.page = Page::Review;
         self.notice.clear();
     }
     pub fn review_scan(&mut self, report: [crate::sync::SlotMatch; 4]) {
         self.review(report.each_ref().map(|s| s.accepted));
+        self.samples = report.each_ref().map(|s| s.sample.clone());
         self.suggestions = report.map(|s| {
             s.top
                 .into_iter()
@@ -73,6 +81,15 @@ impl Panel {
                 .map(|(id, _)| id)
                 .collect()
         });
+    }
+    pub fn confirmed_samples(&self) -> impl Iterator<Item = (usize, &crate::hud::Print)> {
+        self.samples.iter().enumerate().filter_map(|(i, p)| {
+            if self.page == Page::Review && self.picked[i] {
+                Some((self.draft[i]?, p.as_ref()?))
+            } else {
+                None
+            }
+        })
     }
     pub fn ready_notice(&mut self) {
         self.notice = if !self.armed {
@@ -147,7 +164,10 @@ impl Panel {
                     t[11] = lab("USE FOUND");
                 }
                 if self.complete().is_some() {
-                    t[12] = lab("APPLY")
+                    t[12] = lab("APPLY");
+                    if self.confirmed_samples().next().is_some() {
+                        t[13] = lab("TEACH");
+                    }
                 }
                 t[14] = lab("CANCEL");
             }
@@ -231,6 +251,11 @@ impl Panel {
             },
             Page::Review => match k {
                 0..=3 => self.page = Page::Pick(k, 0),
+                13 if tile != Tile::Blank => {
+                    if let Some(v) = self.complete() {
+                        return Teach(v);
+                    }
+                }
                 11 if self.partial_ok() => {
                     self.slots = self.draft;
                     self.page = Page::Home;
@@ -254,6 +279,7 @@ impl Panel {
                 _ => {
                     if let Tile::Icon(i) = tile {
                         self.draft[s] = Some(i);
+                        self.picked[s] = true;
                         self.page = Page::Review
                     }
                 }

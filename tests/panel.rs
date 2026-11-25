@@ -36,6 +36,40 @@ fn mission_paging_reaches_every_objective_while_paused_and_armed() {
     assert_eq!(p.page, Page::Home);
 }
 #[test]
+fn teaching_requires_an_explicit_pick_from_a_fresh_scan() {
+    let c = Catalog::load().unwrap();
+    let ids = [
+        "shield-generator-pack",
+        "las-44-nova",
+        "rocket-sentry",
+        "leveller",
+    ]
+    .map(|s| c.id(s).unwrap());
+    let mut row = image::RgbImage::new(288, 72);
+    for (slot, &id) in ids.iter().enumerate() {
+        image::imageops::replace(&mut row, &c.icons[id], (slot * 72) as i64, 0);
+    }
+    let mut scan = helldeck::sync::Matcher::new(&c).scan(&row).unwrap();
+    scan[1].accepted = None;
+    let mut p = Panel::new(ids.map(Some));
+    p.review_scan(scan);
+    assert_eq!(p.tiles(&c)[13], Tile::Blank);
+    p.press(1, &c);
+    p.press(0, &c); // explicitly pick previous Nova
+    assert_eq!(p.tiles(&c)[13], Tile::Label("TEACH".into()));
+    assert_eq!(
+        p.confirmed_samples().map(|(id, _)| id).collect::<Vec<_>>(),
+        vec![ids[1]]
+    );
+    assert_eq!(p.press(12, &c), Action::Save(ids));
+    assert_eq!(p.press(13, &c), Action::Teach(ids));
+    p.press(14, &c);
+    p.press(10, &c);
+    p.press(1, &c);
+    p.press(0, &c); // manual Edit is not a camera sample
+    assert_eq!(p.press(13, &c), Action::None);
+}
+#[test]
 fn previous_slot_is_a_first_page_choice_not_an_automatic_match() {
     let c = Catalog::load().unwrap();
     let nova = c.id("las-44-nova").unwrap();
