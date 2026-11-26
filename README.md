@@ -37,17 +37,25 @@ By **Matthew Rogers** · [@matthewrogers on X](https://x.com/matthewrogers)
 
 ### 1. Host packages (Arch / Omarchy)
 
-Make sure you have `hyprland`, `grim`, `slurp`, `coreutils`, `systemd-libs`, `desktop-file-utils`, and `libnotify` (plus a StatusNotifier tray host if you want the tray icon). Building from source also needs Rust (`rust` or `rustup`), `base-devel`, and `pkg-config`.
-
-### 2. Build
-
-Keep the full checkout together (it bundles its Cargo crates in `vendor/` and icon art in `assets/`):
-
 ```sh
-cargo build --release --frozen
+sudo pacman -S --needed hyprland grim slurp coreutils systemd-libs desktop-file-utils libnotify
 ```
 
-*(Using a prebuilt Linux release bundle? `target/release/helldeck` is already included — skip this step.)*
+*(Building from source? Also install `rust base-devel pkgconf`. A StatusNotifier tray host is optional for the tray icon.)*
+
+### 2. Download or build
+
+**Prebuilt x86-64 release (fastest)** — grabs the [latest release](https://github.com/RamboRogers/helldeck/releases/latest) with `target/release/helldeck` ready to run:
+
+```sh
+curl -fL https://github.com/RamboRogers/helldeck/releases/latest/download/helldeck-0.1.0-x86_64-linux.tar.gz | tar -xz && cd helldeck-0.1.0-x86_64-linux
+```
+
+**Or build from source** (offline-ready, crates vendored in `vendor/`):
+
+```sh
+git clone https://github.com/RamboRogers/helldeck.git && cd helldeck && cargo build --release --frozen
+```
 
 ### 3. Check your deck & permissions
 
