@@ -37,7 +37,7 @@ By **Matthew Rogers** · [@matthewrogers on X](https://x.com/matthewrogers)
 
 ### 1. Host packages (Arch / Omarchy)
 
-Make sure you have `hyprland`, `grim`, `slurp`, `psmisc`, `coreutils`, `systemd-libs`, `desktop-file-utils`, and `libnotify` (plus a StatusNotifier tray host if you want the tray icon). Building from source also needs Rust (`rust` or `rustup`), `base-devel`, and `pkg-config`.
+Make sure you have `hyprland`, `grim`, `slurp`, `coreutils`, `systemd-libs`, `desktop-file-utils`, and `libnotify` (plus a StatusNotifier tray host if you want the tray icon). Building from source also needs Rust (`rust` or `rustup`), `base-devel`, and `pkg-config`.
 
 ### 2. Build
 

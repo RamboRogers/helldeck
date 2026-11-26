@@ -9,8 +9,7 @@ use helldeck::{
 };
 use std::{
     fs,
-    path::PathBuf,
-    process::Command,
+    path::{Path, PathBuf},
     sync::{
         Arc, Mutex,
         atomic::{AtomicBool, Ordering},
@@ -73,30 +72,51 @@ fn approved_holder(pid: u32) -> Result<bool> {
         &fs::read(p.join("environ"))?,
     ))
 }
+fn node_holders(node: &Path) -> Result<Vec<u32>> {
+    use std::os::unix::fs::{FileTypeExt, MetadataExt};
+    let target =
+        fs::metadata(node).with_context(|| format!("cannot inspect {}", node.display()))?;
+    let target_char = target.file_type().is_char_device().then_some(target.rdev());
+    let self_pid = std::process::id();
+    let mut holders = Vec::new();
+    for entry in fs::read_dir("/proc").context("cannot read /proc")? {
+        let Ok(entry) = entry else { continue };
+        let Ok(pid) = entry.file_name().to_string_lossy().parse::<u32>() else {
+            continue;
+        };
+        if pid == self_pid {
+            continue;
+        }
+        let Ok(fds) = fs::read_dir(entry.path().join("fd")) else {
+            continue;
+        };
+        for fd in fds.flatten() {
+            let Ok(meta) = fs::metadata(fd.path()) else {
+                continue;
+            };
+            let same_inode = meta.dev() == target.dev() && meta.ino() == target.ino();
+            let same_char = target_char
+                .is_some_and(|rdev| meta.file_type().is_char_device() && meta.rdev() == rdev);
+            if same_inode || same_char {
+                holders.push(pid);
+                break;
+            }
+        }
+    }
+    holders.sort_unstable();
+    Ok(holders)
+}
 fn idle_node() -> Result<PathBuf> {
     let node = deck_node()?;
-    let r = Command::new("fuser")
-        .arg(&node)
-        .output()
-        .context("fuser is required for the device-owner check")?;
-    if r.status.success() {
-        let ids = std::str::from_utf8(&r.stdout)?
-            .split_whitespace()
-            .map(str::parse::<u32>)
-            .collect::<std::result::Result<Vec<_>, _>>()?;
+    let ids = node_holders(&node)?;
+    if !ids.is_empty() {
         ensure!(
-            !ids.is_empty() && ids.iter().all(|id| approved_holder(*id).unwrap_or(false)),
+            ids.iter().all(|id| approved_holder(*id).unwrap_or(false)),
             "{} is busy: non-game HID owner(s) {:?}; close competing deck manager",
             node.display(),
             ids
         );
         eprintln!("Sharing MK.2 with Helldivers 2's Proton HID service");
-    } else {
-        ensure!(
-            r.status.code() == Some(1) && r.stderr.is_empty(),
-            "cannot verify owner of {}",
-            node.display()
-        );
     }
     Ok(node)
 }
@@ -463,5 +483,31 @@ mod focus_tests {
         let c = Catalog::load().unwrap();
         p.press(14, &c); // explicit Pause still wins over focus changes
         assert!(!observe_focus(&mut p, Some(&w)));
+    }
+    #[test]
+    fn node_holders_finds_other_process_without_network_sockets() {
+        let tmp = tempfile::NamedTempFile::new().unwrap();
+        // Self holding the file must not report a competing owner.
+        assert!(node_holders(tmp.path()).unwrap().is_empty());
+        // A separate process holding an open fd to the file must be detected.
+        let holder = fs::File::open(tmp.path()).unwrap();
+        let mut child = std::process::Command::new("sleep")
+            .arg("30")
+            .stdin(std::process::Stdio::from(holder))
+            .spawn()
+            .unwrap();
+        let pid = child.id();
+        let found = (0..20).any(|_| {
+            if node_holders(tmp.path()).unwrap().contains(&pid) {
+                true
+            } else {
+                thread::sleep(Duration::from_millis(10));
+                false
+            }
+        });
+        let _ = child.kill();
+        let _ = child.wait();
+        assert!(found, "expected holder pid {pid} to be detected");
+        assert!(node_holders(tmp.path()).unwrap().is_empty());
     }
 }
